@@ -8,6 +8,7 @@ import Help from "./components/Help/Help";
 import {
   hintHeatmapFull,
   hintHeatmapZone,
+  hintHeatmapZoneOne,
   markersClear,
   multipleHelp,
   setWinnerUser,
@@ -16,6 +17,8 @@ import {
   hintShowBest,
   setScoresWinner,
   hintBestMoves,
+  hintFutured,
+  hintBestMovesWar,
 } from "../../store/Board/actions";
 
 import { clearGameId } from "../../store/GameCreate/actions";
@@ -24,6 +27,7 @@ import { client, token } from '../../Socket.js'
 import {
   HEATMAP_FULL,
   HEATMAP_ZONE_QUARTER,
+  HEATMAP_ZONE_QUARTER_ONE,
 } from "./components/Help/types";
 
 const Wrapper = styled.div`
@@ -202,6 +206,19 @@ const GameBoard = ({ history }) => {
       setHelpType("single");
       dispatch(hintBestMoves(game_id, count));
     }
+	
+	if(type === "single_war"){
+		dispatch(setBlocked(true))
+		setHelpType("single");
+		dispatch(hintBestMovesWar(game_id, count));
+	}
+	
+	if(type === "futuredGame"){
+		dispatch(setBlocked(true))
+		setHelpType("single");
+		dispatch(hintFutured(game_id, count));
+	}
+	
     if (type === "multiple") {
       setHelpType("multiple");
       setMultipleType("multiple");
@@ -219,6 +236,10 @@ const GameBoard = ({ history }) => {
         case HEATMAP_ZONE_QUARTER:
           dispatch(hintHeatmapZone(game_id, true));
           break;
+		case HEATMAP_ZONE_QUARTER_ONE:
+			dispatch(hintHeatmapZoneOne(game_id, count));
+          break;
+		break;
       }
     }
     if (type === "score") {

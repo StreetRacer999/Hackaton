@@ -4,6 +4,7 @@ import Players from "../GameInfo/components/Players/Players";
 import {
   HEATMAP_FULL,
   HEATMAP_ZONE_QUARTER,
+  HEATMAP_ZONE_QUARTER_ONE,
 } from "./types";
 
 const Wrapper = styled.div`
@@ -64,6 +65,25 @@ const Help = ({
         >
           Лучший ход
         </HelpItem>
+		
+		<HelpItem
+          active={activeHelpId === 31}
+          onClick={() =>
+            scores && handleHelp({ type: "futuredGame", id: 31, count: 4 })
+          }
+        >
+          Развитие игры на 4 хода вперёд
+        </HelpItem>
+		
+		
+		<HelpItem
+          active={activeHelpId === 2}
+          onClick={() =>
+            scores && handleHelp({ type: "single_war", id: 2, count: 1 })
+          }
+        >
+          Лучший ход соперника
+        </HelpItem>
         <HelpItem
           active={activeHelpId === HEATMAP_FULL}
           onClick={() =>
@@ -81,6 +101,8 @@ const Help = ({
         >
           Показать лучший из заданных 3 ходов
         </HelpItem>
+		
+		
         <HelpItem
           active={activeHelpId === HEATMAP_ZONE_QUARTER}
           onClick={() =>
@@ -89,6 +111,42 @@ const Help = ({
         >
           В какой четверти доски сейчас лучший ход?
         </HelpItem>
+		
+		<HelpItem
+          active={activeHelpId === HEATMAP_ZONE_QUARTER_ONE}
+          onClick={() =>
+			scores && handleHelp({ type: "map", id: HEATMAP_ZONE_QUARTER_ONE, count: 1 })
+          }
+        >
+          Тепловая карта 1-ой четверти доски
+        </HelpItem>
+		
+		<HelpItem
+          active={activeHelpId === 3}
+          onClick={() =>
+			scores && handleHelp({ type: "map", id: HEATMAP_ZONE_QUARTER_ONE, count: 2 })
+          }
+        >
+          Тепловая карта 2-ой четверти доски
+        </HelpItem>
+		<HelpItem
+          active={activeHelpId === 4}
+          onClick={() =>
+			scores && handleHelp({ type: "map", id: HEATMAP_ZONE_QUARTER_ONE, count: 3 })
+          }
+        >
+          Тепловая карта 3-ой четверти доски
+        </HelpItem>
+		<HelpItem
+          active={activeHelpId === 5}
+          onClick={() =>
+			scores && handleHelp({ type: "map", id: HEATMAP_ZONE_QUARTER_ONE, count: 4 })
+          }
+        >
+          Тепловая карта 4-ой четверти доски
+        </HelpItem>
+		
+		
         <HelpItem
           active={activeHelpId === 34}
           onClick={() => scores && handleHelp({ type: "score", id: 34 })}

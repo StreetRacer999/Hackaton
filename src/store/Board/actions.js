@@ -5,10 +5,13 @@ import {
   WINNER_USER,
   LOSER_USER,
   GET_HINT_BEST_MOVES,
+  GET_HINT_BEST_MOVES_WAR,
   GET_HINT_SHOW_BEST,
   GET_HINT_HEATMAP_FULL,
   GET_HINT_HEATMAP,
   GET_HINT_HEATMAP_ZONE,
+  GET_HINT_HEATMAP_ZONE_ONE,
+  GET_HINT_FUTURED,
   SET_BLOCKED,
   MAP_STONES,
   GET_SCORES_WINNER
@@ -61,6 +64,16 @@ export const hintBestMoves = (game_id, count) => ({
   payload: {game_id: game_id, count: count}
 });
 
+export const hintFutured = (game_id, count) => ({
+  type: GET_HINT_FUTURED,
+  payload: {game_id: game_id, count: count}
+});
+
+export const hintBestMovesWar = (game_id, count) => ({
+  type: GET_HINT_BEST_MOVES_WAR,
+  payload: {game_id: game_id, count: count}
+});
+
 export const hintShowBest = (game_id, moves) => ({
   type: GET_HINT_SHOW_BEST,
   payload: {game_id: game_id, moves: moves}
@@ -76,4 +89,7 @@ export const hintHeatmapZone = (game_id, isQuarter) => ({
   payload: {game_id: game_id, isQuarter}
 });
 
-
+export const hintHeatmapZoneOne = (game_id, isQuarter) => ({
+  type: GET_HINT_HEATMAP_ZONE_ONE,
+  payload: {game_id: game_id, isQuarter}
+});
