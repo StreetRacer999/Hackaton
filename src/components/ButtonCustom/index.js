@@ -47,7 +47,7 @@ export const ButtonCustom = ({
   textColor,
   disabled,
   type,
-  onClick
+  onClick,
 }) => (
   <Btn
     width={width}

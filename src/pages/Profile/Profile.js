@@ -45,7 +45,7 @@ const InfoHeader = styled.div`
 
 
 const UserProfileSpan = styled.span`
-  font-size: 18px;
+  font-size: 24px;
   color: #fff;
   margin-top: 30px;
   margin-bottom: 20px;
@@ -53,7 +53,7 @@ const UserProfileSpan = styled.span`
 `;
 
 const GameName = styled.span`
-font-size: 18px;
+font-size: 24px;
 line-height: 22px;
 color: #fff;
 `;
@@ -77,20 +77,24 @@ const InfoPlayer = styled.div``;
 const Left = styled.div`
   display:flex;
   flex-direction:column;
-  
+  padding-right: 20px;
+  border-right: 2px dashed #000000;
 `;
 
 const UserVs = styled.div`
   margin-bottom:30px;
-`;
+  display: flex;
+  align-items: center;
+  `;
 const EnemyVs = styled.div`
-
+  display: flex;
+  align-items: center;
 `;
 
 const Right = styled.div`
   display: flex;
   align-items: center;
-  
+  flex-direction: column;
   
 `;
 
@@ -104,8 +108,8 @@ const GameHistory = styled.div`
 `;
 
 const Avatar = styled.img`
-  width: 48px;
-  height: 48px;
+  width: 75px;
+  height: 75px;
 `;
 const Name = styled.p`
   font-weight: bold;
@@ -169,14 +173,15 @@ const ButtonDownloadFile = styled.div`
 const ButtonRow = styled.div`
   display: flex;
   flex-direction: column;
+  width: 25%;
 `;
 
 const GameHistoryItem = styled.div`
 
-
+  border-radius: 5px;
   width: 100%;
   background: ${(props) => (props.winner ? "#efffda" : "transparent")};
-  border: 1px dashed #000000;
+  border: 2px dashed #000000;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -217,14 +222,12 @@ const UserProfileInfo = styled.div`
 
 const NickName = styled.span`
   color: #fff;
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 32px;
 `;
 
 
 const PlayerLvl = styled.span`
-font-size: 18px;
-line-height: 22px;
+font-size: 24px;
 color: #FFFFFF;
 `;
 
@@ -237,7 +240,9 @@ const UserBlock = styled.div`
 const GameHeader = styled.div`
   display:flex;
   align-item:center;
-
+  width: 90%;
+  justify-content: space-between;
+  margin-bottom: 20px;
 `;
 
 const GameHeaderTitle = styled.h2`
@@ -299,7 +304,6 @@ const Profile = ({ history }) => {
                 <AvatarHistory alt="avatar" src={playerInfo.avatar} />
                 <InfoHistory>
                   <Name>{playerInfo.nickname}</Name>
-                  <Pts>{playerInfo.pts} / {item.player.position+'th'}</Pts>
                 </InfoHistory>
               </UserVs>
               
@@ -307,16 +311,12 @@ const Profile = ({ history }) => {
                 <AvatarHistory alt="avatar" src={item.player.avatar} />
                 <InfoHistory>
                   <Name>{item.player.nickname}</Name>
-                  <Pts>{item.player.pts} / {item.player.position+'th'}</Pts>
                 </InfoHistory>
               </EnemyVs>
             </Left>
             <Right>
-              <TriangleLeft />
               <ScoreLeft>{item.scoreOpponent}</ScoreLeft>
-              <Span>/</Span>
               <ScoreRight>{item.score}</ScoreRight>
-              <TriangleRight/>
             </Right>
             <ButtonRow>
               <ButtonDownloadFile onClick={()=>dispatch(getSgf(item.game_id))}>
@@ -381,7 +381,7 @@ const Profile = ({ history }) => {
         <GameHeader>
           <GameHeaderTitle>Партии пользователя</GameHeaderTitle>
           <ButtonCustom
-            
+            width="30%"
             onClick={() => {
               history.push(MAIN_URL);
             }}
