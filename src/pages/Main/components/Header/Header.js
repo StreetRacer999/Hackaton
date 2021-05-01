@@ -54,7 +54,7 @@ const Info = styled.div`
 `;
 
 const Logotype = styled.img`
-  width: 405px;
+  width: 60px;
   height: auto;
   margin-right: 14px;
 `;

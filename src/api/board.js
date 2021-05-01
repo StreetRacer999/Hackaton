@@ -31,6 +31,12 @@ export const helpHeatmapZoneOne = (token, game_id, is_quarter) => {
   return GET(`hints/heatmap-quarter?game_id=${game_id}&centaur_token=test1&token=${token}&quarter=${is_quarter}`, {}, token);
 };
 
+
+export const helpHeatmapZoneQuerterTwo = (token, game_id, is_quarter) => {
+  return GET(`hints/heatmap-two-quarters?game_id=${game_id}&centaur_token=test1&token=${token}&quarters=${is_quarter}`, {}, token);
+};
+
+
 export const scoresWinner = (token, game_id) => {
   return GET(`hints/winner?game_id=${game_id}&centaur_token=test1&token=${token}`, {}, token);
 };

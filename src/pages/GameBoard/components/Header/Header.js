@@ -31,6 +31,7 @@ const LogoWrapper = styled.div`
   cursor: pointer;
 `;
 const Logotype = styled.img`
+  
 `;
 const Text = styled.p`
   font-size: 24px;

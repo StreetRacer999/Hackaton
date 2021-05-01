@@ -14,7 +14,8 @@ import {
   GET_HINT_FUTURED,
   SET_BLOCKED,
   MAP_STONES,
-  GET_SCORES_WINNER
+  GET_SCORES_WINNER,
+  GET_HINT_CAPTURING,
 } from "./types";
 
 export const hintHeatmapFull = (game_id) => ({
@@ -74,6 +75,11 @@ export const hintBestMovesWar = (game_id, count) => ({
   payload: {game_id: game_id, count: count}
 });
 
+export const hintCapturing = (game_id, count) => ({
+  type: GET_HINT_CAPTURING,
+  payload: {game_id: game_id, count: count}
+});
+
 export const hintShowBest = (game_id, moves) => ({
   type: GET_HINT_SHOW_BEST,
   payload: {game_id: game_id, moves: moves}
@@ -84,9 +90,9 @@ export const hintHeatmap = (game_id) => ({
   payload: {game_id: game_id}
 });
 
-export const hintHeatmapZone = (game_id, isQuarter) => ({
+export const hintHeatmapZone = (game_id, isQuarter, typeHint) => ({
   type: GET_HINT_HEATMAP_ZONE,
-  payload: {game_id: game_id, isQuarter}
+  payload: {game_id: game_id, isQuarter, typeHint}
 });
 
 export const hintHeatmapZoneOne = (game_id, isQuarter) => ({

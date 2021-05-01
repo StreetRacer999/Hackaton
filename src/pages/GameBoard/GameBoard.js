@@ -19,6 +19,7 @@ import {
   hintBestMoves,
   hintFutured,
   hintBestMovesWar,
+  hintCapturing,
 } from "../../store/Board/actions";
 
 import { clearGameId } from "../../store/GameCreate/actions";
@@ -206,6 +207,12 @@ const GameBoard = ({ history }) => {
       setHelpType("single");
       dispatch(hintBestMoves(game_id, count));
     }
+    
+    if (type === "capturing") {
+      dispatch(setBlocked(true))
+      setHelpType("single");
+      dispatch(hintCapturing(game_id, 3));
+    }
 	
 	if(type === "single_war"){
 		dispatch(setBlocked(true))
@@ -230,6 +237,12 @@ const GameBoard = ({ history }) => {
       setMapType("map");
       switch (id)
       {
+        case 24:
+          dispatch(hintHeatmapZone(game_id, false));
+        break;
+        case 22:
+          dispatch(hintHeatmapZone(game_id, false, 'customHintCapture'));
+        break;
         case HEATMAP_FULL:
           dispatch(hintHeatmapFull(game_id));
           break;

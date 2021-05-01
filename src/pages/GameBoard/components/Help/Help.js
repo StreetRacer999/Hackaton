@@ -57,6 +57,15 @@ const Help = ({
         times={times}
       />
       <HelpWrapper>
+      <HelpItem
+          active={activeHelpId === 22}
+          onClick={() =>
+            scores && handleHelp({ type: "map", id: 22 })
+          }
+        >
+          Захват начальной территории
+        </HelpItem>
+
         <HelpItem
           active={activeHelpId === 1}
           onClick={() =>
@@ -110,6 +119,14 @@ const Help = ({
           }
         >
           В какой четверти доски сейчас лучший ход?
+        </HelpItem>
+		<HelpItem
+          active={activeHelpId === 24}
+          onClick={() =>
+            scores && handleHelp({ type: "map", id: 24 })
+          }
+        >
+          Лучшая половина
         </HelpItem>
 		
 		<HelpItem
