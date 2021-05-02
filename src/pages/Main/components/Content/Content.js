@@ -8,12 +8,12 @@ import { Winner } from "../Winner";
 import { Error } from "../Error";
 import { INFO_URL, PROFILE_URL } from "../../../../constants/routes";
 
-import { EDUCATION } from "../../../../constants/routes";
+import { EDUCATION, HINTS } from "../../../../constants/routes";
 import { createRandomGame, createGameWithAi } from "../../../../store/GameCreate/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { ButtonCustomAndArrow, ButtonCustomForm } from "../../../../components/ButtonCustom";
 import Logo from "../../../../assets/img/logo.png";
-
+import Grafik from '../../../../assets/img/grafik.png'
 const Wrapper = styled.div`
   // width: 613px;
   // margin: 0 auto;
@@ -266,6 +266,10 @@ export const Content = ({ history, searchType, setSearchType }) => {
             >
               Обучение
           </ButtonCustomAndArrow>{" "}
+          <ButtonCustomAndArrow  onClick={() => {
+                history.push(HINTS);
+                setSearchType("");
+              }}>Подсказки</ButtonCustomAndArrow> {" "}
             <ButtonCustomAndArrow mb={0} onClick={() => history.push('/liders')}>Рейтинг игроков</ButtonCustomAndArrow>{" "}
             <ButtonCustomAndArrow
               onClick={() => {
@@ -332,6 +336,8 @@ const Search = styled.img`
   width: 115px;
 `;
 
+const Images = styled.img``;
+
 export const ContentOne = ({ history, searchType, setSearchType, nickname, pts, avatar, winrate }) => {
   const dispatch = useDispatch();
   const gameId = useSelector(state => state.createGame.id);
@@ -361,7 +367,11 @@ export const ContentOne = ({ history, searchType, setSearchType, nickname, pts, 
             <Avatar alt="avatar" src={avatar} />
           </RightContent>
         </Right>
+        
       </Container>
+      <div>
+            <Images src={Grafik}></Images>
+          </div>
       {!searchType ? (
         <>
 

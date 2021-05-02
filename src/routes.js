@@ -10,6 +10,7 @@ import PrivateRoute from "./components/Routes/PrivateRoute/PrivateRoute";
 import LoginRoute from "./components/Routes/LoginRoute/LoginRoute";
 import Liders from "./pages/Liders/Liders";
 import Education from "./pages/Education/Education";
+import Hints from "./pages/Hints/Hints";
 import {
   AUTH_URL,
   GAME_URL,
@@ -17,7 +18,10 @@ import {
   PROFILE_URL,
   INFO_URL,
   LIDERS,
-  EDUCATION
+  EDUCATION,
+  EDUCATION_LOGIN,
+  HINTS,
+  HINTS_LOGIN,
 } from "./constants/routes";
 
 const Routes = () => (
@@ -30,6 +34,9 @@ const Routes = () => (
         <PrivateRoute exact path={INFO_URL} component={Info} />
         <PrivateRoute exact path={LIDERS} component={Liders} />
         <PrivateRoute exact path={EDUCATION} component={Education} />
+        <LoginRoute exact path={EDUCATION_LOGIN} component={Education} />
+        <LoginRoute exact path={HINTS_LOGIN} component={Hints} />
+        <PrivateRoute exact path={HINTS} component={Hints} />
         <Redirect to={AUTH_URL}/>
       </Switch>
   </Router>

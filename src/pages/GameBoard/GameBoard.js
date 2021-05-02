@@ -75,6 +75,10 @@ const ContainerOne = styled.div`
 const Flex1 = styled.div`
   width: 50%;
 `;
+
+var startStep = Math.round(Math.random() * (7 - 4 + 1)) + 4;
+
+var countSteps = 0;
 const GameBoard = ({ history }) => {
 
   const game_id = useSelector((state) => state.createGame.id);
@@ -124,12 +128,24 @@ const GameBoard = ({ history }) => {
   },[])
 
   client.onmessage = function(e) {
+    var isAdmin = false;
     setEnemyPass(false)
     if (typeof e.data === 'string') {
       let jsonData = JSON.parse(e.data);
       if (jsonData.payload) {
         if (jsonData.payload.currentMap) {
-          setCoordinates(mapMap(jsonData.payload.currentMap))
+          setCoordinates(mapMap(jsonData.payload.currentMap));
+          if(countSteps < stepMain){
+            console.log(stepMain);
+            countSteps++;
+            if(countSteps == startStep){
+              isAdmin = window.confirm("Не желаете воспользоваться сценарием помощи - Захват начальное территории?");
+        
+              if(isAdmin){
+                dispatch(hintHeatmapZone(game_id, false, 'customHintCapture'));
+              }
+            }
+          }
         }
         if (jsonData.payload.type === "currentMap") {
           setYou(jsonData.payload.you)
@@ -172,6 +188,9 @@ const GameBoard = ({ history }) => {
       }
     }
     dispatch(setBlocked(false))
+    if(isAdmin === true){
+      dispatch(setBlocked(true))
+    }
   };
   var lastYorXount = 0;
   const mapMap = (map) => {
@@ -194,9 +213,10 @@ const GameBoard = ({ history }) => {
       }
     })
     setStepMain(steMainTemp)
-    
-
     setStepTwo(stepTwoTemp)
+
+    
+    
     return coords;
   }
 
@@ -207,6 +227,7 @@ const GameBoard = ({ history }) => {
       setHelpType('')
       dispatch(setBlocked(true))
       client.send(JSON.stringify([7, "go/game", {command: "move", token: token, place: coord.toString().toLowerCase(), game_id: game_id}]));
+     
     }
   }
 
@@ -268,6 +289,18 @@ const GameBoard = ({ history }) => {
         case 22:
           dispatch(hintHeatmapZone(game_id, false, 'customHintCapture'));
         break;
+        case 221:
+          dispatch(hintHeatmapZone(game_id, false, 'customHintAttackTwoQuerters'));
+        break;
+        case 223:
+          dispatch(hintHeatmapZone(game_id, false, 'customHintProtection'));
+        break;
+
+        case 224:
+          dispatch(hintHeatmapZone(game_id, false, 'superiority'));
+        break;
+
+
         case HEATMAP_FULL:
           dispatch(hintHeatmapFull(game_id));
           break;

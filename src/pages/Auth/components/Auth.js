@@ -6,6 +6,9 @@ import { ButtonCustom, ButtonCustomAndArrow, ButtonCustomForm } from "../../../c
 import { Input } from "../../../components/InputCustom";
 import { regSubmit, loginSubmit } from "../../../store/Auth/actions";
 
+import { EDUCATION_LOGIN, HINTS_LOGIN } from "../../../constants/routes";
+
+
 const Wrapper = styled.div`
   height: 100vh;
   position: relative;
@@ -115,7 +118,8 @@ const Label = styled.label`
   font-size: 24px;
   margin-top: 20px;
 `;
-const Auth = () => {
+const Auth = ({history, location}) => {
+  const [searchType, setSearchType] = useState(location.state?.from ? location.state.from : '');
   const [activeTab, setActiveTab] = useState("reg");
   const [email, setEmail] = useState("");
   const [nickname, setNickname] = useState("");
@@ -153,11 +157,17 @@ const Auth = () => {
           <Logotype alt="logo" src={Logo} />
           ГоСтратег
         </Top>
-            Эффективная система подсказок в игре Го
+            Эффективная система <br/>подсказок в игре Го
           </Titlemain>
           <ContantMain>
-            <ButtonCustomAndArrow >Подсказки</ButtonCustomAndArrow>
-            <ButtonCustomAndArrow >Обучение</ButtonCustomAndArrow>
+            <ButtonCustomAndArrow  onClick={() => {
+                history.push(HINTS_LOGIN);
+                setSearchType("");
+              }}>Подсказки</ButtonCustomAndArrow>
+            <ButtonCustomAndArrow onClick={() => {
+                history.push(EDUCATION_LOGIN);
+                setSearchType("");
+              }}>Обучение</ButtonCustomAndArrow>
             <ButtonCustomAndArrow >Интересные партии</ButtonCustomAndArrow>
           </ContantMain>
           <FooterMain>
@@ -189,6 +199,7 @@ const Auth = () => {
             value={email}
             name="email"
             color="#000"
+            background="#ecdfd6"
           />
           {activeTab === "reg" ? (
            <Label>
@@ -209,6 +220,7 @@ const Auth = () => {
               errorMessage={error}
               name="nickname"
               color="#000"
+              background="#ecdfd6"
             />
           ) : (
             <Input
@@ -221,12 +233,13 @@ const Auth = () => {
               name="password"
               type="password"
               color="#000"
+              background="#ecdfd6"
             />
           )}
           <ButtonCustomForm type="submit">
           {activeTab === "reg" ? (
             <Span>
-              Зарегаться
+              Зарегистрироваться
             </Span>
           ) : (
             <Span>

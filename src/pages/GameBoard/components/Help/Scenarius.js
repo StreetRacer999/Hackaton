@@ -219,6 +219,34 @@ return (
       >
         Захват начальной территории
       </HelpItem>
+      <HelpItem
+        active={activeHelpId === 221}
+        onClick={() =>
+          scores && handleHelp({ type: "map", id: 221 })
+        }
+      >
+        Атака по двум четвертям
+      </HelpItem>
+    </HelpWrapper>
+    <HelpWrapper>
+    <HelpItem
+        active={activeHelpId === 223}
+        onClick={() =>
+          scores && handleHelp({ type: "map", id: 223 })
+        }
+      >
+        Защита
+      </HelpItem>
+    </HelpWrapper>
+    <HelpWrapper>
+    <HelpItem
+        active={activeHelpId === 224}
+        onClick={() =>
+          scores && handleHelp({ type: "map", id: 224 })
+        }
+      >
+        Продолжать играть?
+      </HelpItem>
     </HelpWrapper>
   </Wrapper>
 );

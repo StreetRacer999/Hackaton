@@ -165,9 +165,8 @@ const ButtonDownloadFile = styled.div`
   cursor: pointer;
   font-size: 18px;
   border: none;
-  :first-child {
     margin-bottom: 15px;
-  }
+  
 `;
 
 const ButtonRow = styled.div`
@@ -324,6 +323,10 @@ const Profile = ({ history }) => {
               </ButtonDownloadFile>
               <ButtonDownloadFile onClick={()=>dispatch(getFullLog(item.game_id))}>
                 Лог
+              </ButtonDownloadFile>
+              <br />
+              <ButtonDownloadFile>
+                Аналитика
               </ButtonDownloadFile>
             </ButtonRow>
           </GameHistoryItem>
